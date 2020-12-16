@@ -1,0 +1,33 @@
+/* function countBs(string) {
+    let result = 0;*/
+// loop string & if character is "B", result increments by 1 //
+/* for (let i=0; i < string.length; i++) {
+if (string[i] ==='B') {
+    result++;
+}
+}
+return result;
+}
+*/
+
+function countBs(string) {
+    return countChar(string, 'B');
+}
+
+function countChar(string, character){
+    let result = 0;
+
+/* loop string & if character matches input character, result increments by 1 */
+
+for (let i=0; i < string.length; i++) {
+if (string[i] === character) {
+    result++;
+}
+}
+
+return result;
+}
+
+console.log(countBs("BBC"));
+console.log(countChar("kakkerlak", "k"));
+
