@@ -18,5 +18,5 @@
     return futureValue;
 }
 
-let futValue = calculateFutureValue(100, 0.01, 120);
+let futuValue = calculateFutureValue(100, 0.01, 120);
 console.log(futValue);
