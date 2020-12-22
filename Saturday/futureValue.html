@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Future Value Calculator</title>
-    <script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+ 
+ <script>
         function calculateFutureValue(initInvest, monthlyInv, annInterestRate, months) {
             let futureValue = initInvest;
             for (let i = 1; i <= months; i++) {
@@ -23,25 +25,40 @@
 
             console.log("Button clicked", initInvest, monthlyInvest, annInterestRate, months);
             // let futureValue = 1200.11
-            let futureValue = ((initInvest * (1 + annInterestRate/12/100)) + (monthlyInvest * (1 + annInterestRate / 12 / 100)) * months);
+            let futureValue =calculateFutureValue(initInvest * (1 + annInterestRate/12/100)) + (monthlyInvest * (1 + annInterestRate / 12 / 100)) * months);
 
             document.getElementById("futureValue").innerText = futureValue;
         }
     </script>
 </head>
 
-<body style="background-color:rgb(51, 87, 51);" 
-style="font-size:x-large;" 
-style="font-family:Tahoma;" 
+<body style="background-color:rgb(51, 87, 51);"  
 style="color:rgb(247, 247, 132);";>
-
-    Initial investment: <input type="number" id="initInvest"><br><br>
+<div class="container">
+<div class="row"></div>
+    <label for="initInvest" class="col"> Initial investment</label> <input type="number" id="initInvest"><br><br>
+    </div>
+</div>
     Monthly investment: <input type="number" id="monthlyInvest"><br><br>
     Annual interest rate: <input type="number" id="annInterestRate"><br><br>
     Months: <input type="number" id="months"><br><br>
-    <button onclick="calculate(calculateFutureValue)">Calculate</button>
+    <button class="btn btn-primary" onclick="displayFutureValue()">Calculate</button>
     <br><br>
     Future value: <span id="futureValue"></span>
+    
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Init</th>
+                <th>Month</th>
+                <th>APR</th>
+                <th>Num Years</th>
+                <th>Future Value</th>
+            <tr>
+        </thead>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body id="history">
 </body>
 
 </html>
