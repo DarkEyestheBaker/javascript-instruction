@@ -9,23 +9,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
  
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        function calculateFutureValue(initInvest, monthlyInv, annInterestRate, months) {
-            let futureValue = initInvest;
-            for (let i = 1; i <= months; i++) {
-                futureValue = (futureValue + monthlyInv) * (1 + (annInterestRate / 12 / 100));
+       function calcFutureValue(initInvest, monthInvest, annIntRate, numYears) {
+            let total = initInvest;
+            for (let i = 0; i < numYears * 12; ++i) {
+                total = (total + monthInvest) * (1 + (annIntRate / 12 / 100));
             }
-            return futureValue;
+            return total;
         }
 
-        function calculate() {
+        function displayFutureValue() {
             let initInvest = parseFloat(document.getElementById("initInvest").value);
             let monthlyInvest = parseFloat(document.getElementById("monthlyInvest").value);
             let annInterestRate = parseFloat(document.getElementById("annInterestRate").value);
-            let months = parseFloat(document.getElementById("months").value);
+            let numYears = parseFloat(document.getElementById("numYears").value);
+
+            let futureValue = calcFutureValue(initInvest, monthlyInvest, annInterestRate, numYears);
+            futureValue = "$" + futureValue.toFixed(2);
+
+            let futureValueSpan = document.getElementById("futureValue");
+            futureValueSpan.innerText = `${futureValue}`;
+
+            addToHistory(initInvest, monthInvest, annIntRate, numYears, futureValue);
+        }
 
             console.log("Button clicked", initInvest, monthlyInvest, annInterestRate, months);
             // let futureValue = 1200.11
-            let futureValue =calculateFutureValue(initInvest * (1 + annInterestRate/12/100)) + (monthlyInvest * (1 + annInterestRate / 12 / 100)) * months);
+            
 
             document.getElementById("futureValue").innerText = futureValue;
 
@@ -63,3 +72,4 @@ style="color:rgb(247, 247, 132);";>
 </body>
 
 </html>
+
