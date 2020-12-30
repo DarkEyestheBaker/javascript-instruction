@@ -7,8 +7,8 @@
 
     <title>Future Value Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
- 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+ <script>
        function calcFutureValue(initInvest, monthInvest, annIntRate, numYears) {
             let total = initInvest;
             for (let i = 0; i < numYears * 12; ++i) {
@@ -20,38 +20,46 @@
         function displayFutureValue() {
             let initInvest = parseFloat(document.getElementById("initInvest").value);
             let monthlyInvest = parseFloat(document.getElementById("monthlyInvest").value);
-            let annInterestRate = parseFloat(document.getElementById("annInterestRate").value);
+            let annIntRate = parseFloat(document.getElementById("annIntRate").value);
             let numYears = parseFloat(document.getElementById("numYears").value);
 
-            let futureValue = calcFutureValue(initInvest, monthlyInvest, annInterestRate, numYears);
+            let futureValue = calcFutureValue(initInvest, monthlyInvest, annIntRate, numYears);
             futureValue = "$" + futureValue.toFixed(2);
 
             let futureValueSpan = document.getElementById("futureValue");
             futureValueSpan.innerText = `${futureValue}`;
 
-            addToHistory(initInvest, monthInvest, annIntRate, numYears, futureValue);
-        }
+            addToHistory(initInvest, monthlyInvest, annIntRate, numYears, futureValue);
 
-            console.log("Button clicked", initInvest, monthlyInvest, annInterestRate, months);
+            console.log("Button clicked", initInvest, monthlyInvest, annIntRate, numYears);
             // let futureValue = 1200.11
             
 
             document.getElementById("futureValue").innerText = futureValue;
 
         }
+        function addToHistory(initInvest, monthlyInvest, annIntRate, numYears, futureValue) {
+            let row = $("<tr>");
+                row.append ($("<td>").text(initInvest));
+                row.append ($("<td>").text(monthlyInvest));
+                row.append ($("<td>").text(annIntRate));
+                row.append ($("<td>").text(numYears));
+                row.append ($("<td>").text(futureValue));
+
+                    $("#history").append(row);
+        }
     </script>
 </head>
 
-<body style="background-color:rgb(51, 87, 51);"  
-style="color:rgb(247, 247, 132);";>
+<body style="background-color:rgb(51, 87, 51); color: rgb(247, 247, 132)">
 <div class="container">
-<div class="row"></div>
+<div class="row">
     <label for="initInvest" class="col"> Initial investment</label> <input type="number" id="initInvest"><br><br>
     </div>
 </div>
     Monthly investment: <input type="number" id="monthlyInvest"><br><br>
-    Annual interest rate: <input type="number" id="annInterestRate"><br><br>
-    Months: <input type="number" id="months"><br><br>
+    Annual interest rate: <input type="number" id="annIntRate"><br><br>
+    Years: <input type="number" id="numYears"><br><br>
     <button class="btn btn-primary" onclick="displayFutureValue()">Calculate</button>
     <br><br>
     Future value: <span id="futureValue"></span>
@@ -61,12 +69,15 @@ style="color:rgb(247, 247, 132);";>
         <thead>
             <tr>
                 <th>Init</th>
-                <th>Month</th>
+                <th>Monthly</th>
                 <th>APR</th>
                 <th>Num Years</th>
                 <th>Future Value</th>
             <tr>
         </thead>
+        <tbody id="history">
+
+        </tbody>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body id="history">
 </body>
